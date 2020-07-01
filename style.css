@@ -1,0 +1,10 @@
+html {
+  /* Make sure padding doesn't add extra width */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /*Make sure content fit 100% of screen*/
+  min-height: 100vh;
+}
