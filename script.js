@@ -6,14 +6,12 @@ const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
 
-// Show Loading
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-// Hide Loading
-function complete() {
+function removeLoadingSpinner() {
   if (!loader.hidden) {
     loader.hidden = true;
     quoteContainer.hidden = false;
@@ -23,7 +21,7 @@ function complete() {
 // Get Quote From API
 // Async funtion
 async function getQuote() {
-  loading();
+  showLoadingSpinner();
   // Proxy to fixed CORS error
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const apiUrl =
@@ -49,7 +47,8 @@ async function getQuote() {
     }
 
     quoteText.innerText = data.quoteText;
-    complete();
+    removeLoadingSpinner();
+    throw new Error("oops");
   } catch (error) {
     getQuote();
     console.log("whoops, no quote", error);
