@@ -4,10 +4,26 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
+
+// Show Loading
+function loading() {
+  loader.hidden = false;
+  quoteContainer.hidden = true;
+}
+
+// Hide Loading
+function complete() {
+  if (!loader.hidden) {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+  }
+}
 
 // Get Quote From API
 // Async funtion
 async function getQuote() {
+  loading();
   // Proxy to fixed CORS error
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const apiUrl =
@@ -33,6 +49,7 @@ async function getQuote() {
     }
 
     quoteText.innerText = data.quoteText;
+    complete();
   } catch (error) {
     getQuote();
     console.log("whoops, no quote", error);
