@@ -23,14 +23,14 @@ function removeLoadingSpinner() {
 async function getQuote() {
   showLoadingSpinner();
   // Proxy to fixed CORS error
-  const proxyUrl = "https://warm-citadel-96082.herokuapp.com";
+  const proxyUrl = "https://warm-citadel-96082.herokuapp.com/";
   const apiUrl =
     "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 
   try {
     // Wait to fill in const before moving on
     const response = await fetch(proxyUrl + apiUrl);
-    const data = await response.json;
+    const data = await response.json();
 
     // If Author is blank, Add Unknown
     if (data.quoteAuthor === "") {
