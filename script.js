@@ -25,7 +25,7 @@ async function getQuote() {
   // Proxy to fixed CORS error
   const proxyUrl = "https://warm-citadel-96082.herokuapp.com/";
   const apiUrl =
-    "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
+    "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 
   try {
     // Wait to fill in const before moving on
@@ -48,7 +48,6 @@ async function getQuote() {
 
     quoteText.innerText = data.quoteText;
     removeLoadingSpinner();
-    throw new Error("oops");
   } catch (error) {
     getQuote();
     console.log("whoops, no quote", error);
